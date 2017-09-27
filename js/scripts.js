@@ -15,7 +15,7 @@ Player.prototype.rollDie = function() {
       this.totalScore = this.totalScore + this.turnScore;
       return "WINNER!";
     }
-    return true;
+    return rollResult;
 
   }
 }
@@ -37,7 +37,10 @@ $(document).ready(function(){
       var newPlayer = new Player($(this).val());
       playerArray.push(newPlayer);
     })
-    console.log(playerArray);
+
+    playerArray.forEach(function(player) {
+      $("#score-keeper").append("<div class='container'>" + player.playerName + "<br><span class='scoreboard-total'>" + 0 + "</span></div>");
+    });
 
     var currentPlayerIndex = 0;
 
@@ -47,10 +50,10 @@ $(document).ready(function(){
       if (notOne === "WINNER!") {
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore);
       } else if (notOne) {
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " : " + playerArray[currentPlayerIndex].turnScore + " (Total: " + playerArray[currentPlayerIndex].totalScore + " )");
+        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a " + notOne  + ". Turn Score: " + playerArray[currentPlayerIndex].turnScore + " (Total: " + playerArray[currentPlayerIndex].totalScore + " )");
         $("button#button-hold").show();
       } else {
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn! Next player!")
+        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn! Total: " + playerArray[currentPlayerIndex].totalScore + " Next player!")
         if ((playerArray.length - 1) === currentPlayerIndex) {
           currentPlayerIndex = 0;
         } else {
@@ -62,7 +65,7 @@ $(document).ready(function(){
 
     $("button#button-hold").click(function () {
       playerArray[currentPlayerIndex].holdDie();
-      $("#score-total").text(playerArray[currentPlayerIndex].playerName + " total score: " + playerArray[currentPlayerIndex].totalScore);
+      $("#score-total").text(playerArray[currentPlayerIndex].playerName + " held. Their total score is now: " + playerArray[currentPlayerIndex].totalScore);
       if ((playerArray.length - 1) === currentPlayerIndex) {
         currentPlayerIndex = 0;
       } else {
