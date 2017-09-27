@@ -6,7 +6,6 @@ function Player(name) {
 }
 
 Player.prototype.rollDie = function() {
-  debugger;
   var rollResult = Math.floor(Math.random() * (6-1 + 1)) + 1;
   if (rollResult === 1) {
     this.turnScore = 0;
@@ -43,13 +42,19 @@ $(document).ready(function(){
 
     $("button#button-play").click(function () {
       var notOne = playerArray[currentPlayerIndex].rollDie();
+      // $("#score-total").text(playerArray[currentPlayerIndex].playerName + " text ");
       if (notOne === "WINNER!") {
-        $("#score-total").text(newPlayer.playerName + "WINS! Your Score is " + newPlayer.totalScore);
+        $("#score-total").text(playerArray[currentPlayerIndex].playerName + "WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore);
       } else if (notOne) {
-        $("#score-total").text(newPlayer.playerName + " : " + newPlayer.turnScore);
+        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " : " + playerArray[currentPlayerIndex].turnScore);
         $("button#button-hold").show();
       } else {
-        $("#score-total").text("You rolled a 1 and lost your turn! Next player!")
+        $("#score-total").text( playerArray[currentPlayerIndex].playerName + " rolled a 1 and lost your turn! Next player!")
+        if ((playerArray.length - 1) === currentPlayerIndex) {
+          currentPlayerIndex = 0;
+        } else {
+          currentPlayerIndex++;
+        }
       }
 
     });
