@@ -41,7 +41,7 @@ $(document).ready(function(){
     })
 
     playerArray.forEach(function(player) {
-      $("#score-keeper").append("<div class='container'>" + player.playerName + "<br><span class='" + player.playerName + "-total'>" + 0 + "</span></div>");
+      $("#score-keeper").append("<div class='player-score'>" + player.playerName + "<br><span class='" + player.playerName + "-total'>" + 0 + "</span></div>");
     });
 
     var currentPlayerIndex = 0;
@@ -50,11 +50,13 @@ $(document).ready(function(){
       var notOne = playerArray[currentPlayerIndex].rollDie();
       // $("#score-total").text(playerArray[currentPlayerIndex].playerName + " text ");
       if (notOne === "WINNER!") {
+        $("#button-play, #button-hold").hide();
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore);
       } else if (notOne) {
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a " + notOne  + ". Turn Score: " + playerArray[currentPlayerIndex].turnScore);
         $("button#button-hold").show();
       } else {
+        $("#button-hold").hide();
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn! Next player!")
         if ((playerArray.length - 1) === currentPlayerIndex) {
           currentPlayerIndex = 0;

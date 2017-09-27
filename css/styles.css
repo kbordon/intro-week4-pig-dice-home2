@@ -16,4 +16,25 @@
 
 .jumbotron {
   background-color: pink;
+  background-image: url("../img/dice.jpeg");
+  height: 370px;
+  width: 912px;
+  text-align: center;
+  border: 1px solid pink;
+}
+
+body {
+  background-color: pink;
+  background-image: url("../img/pigss.png");
+  /*background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;*/
+}
+
+.container {
+  background-color: yellow;
+  opacity: 0.85;
+  border: 1px solid pink;
+  border-radius: 15px;
 }
