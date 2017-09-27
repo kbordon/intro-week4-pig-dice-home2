@@ -2,7 +2,7 @@
 1. The player will enter their name, and it will start that player's score at 0.
   * input: Elliot
   * output: 0
-  
+
 1. The player will click a button, and it will generate a random number from 1 through 6.
   * input: click
   * output: 3
@@ -11,13 +11,13 @@
   * input: click
   * output: 0, next player's turn
 
+3. The player will click a roll button and receive any number that isn't 1, and add that to their turn score.
+  * input: click
+  * output: 3, total score: 6
+
 3. The player will click a roll button, and their result will display.
   * input: click
   * output: 4
-
-3. The player will click a roll button and receive any number that isn't 1, and add that to their total score.
-  * input: click
-  * output: 3, total score: 6
 
 4. The player will click a roll button and receive any number other than one, and can choose to hold their turn.
   * input: click

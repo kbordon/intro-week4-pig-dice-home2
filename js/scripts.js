@@ -14,6 +14,11 @@ Player.prototype.rollDie = function() {
     this.turnScore = this.turnScore + rollResult;
   }
 }
+
+Player.prototype.holdDie = function() {
+  this.totalScore = this.totalScore + this.turnScore;
+}
+
 // front-end
 $(document).ready(function(){
   $("#player-form").submit(function(event) {
@@ -27,6 +32,11 @@ $(document).ready(function(){
       newPlayer.rollDie();
       $("#score-total").text(newPlayer.playerName + " : " + newPlayer.turnScore);
     });
+
+    $("button#button-hold").click(function () {
+      newPlayer.holdDie();
+      $("#score-total").text(newPlayer.playerName + " total score: " + newPlayer.totalScore);
+    })
   })
 
 
