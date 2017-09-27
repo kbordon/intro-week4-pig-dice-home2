@@ -32,6 +32,7 @@ $(document).ready(function(){
 
     // var nameInput = $("#player-one").val();
     // var newPlayer = new Player(nameInput);
+    var pigSound = new Audio('quiet_pig.mp3');
     $("#create-player").hide();
     $("#button-play").show();
     var playerArray = [];
@@ -47,6 +48,7 @@ $(document).ready(function(){
     var currentPlayerIndex = 0;
 
     $("button#button-play").click(function () {
+      $("." + playerArray[currentPlayerIndex].playerName + "-total").addClass("score-current");
       var notOne = playerArray[currentPlayerIndex].rollDie();
       // $("#score-total").text(playerArray[currentPlayerIndex].playerName + " text ");
       if (notOne === "WINNER!") {
@@ -58,6 +60,7 @@ $(document).ready(function(){
       } else {
         $("#button-hold").hide();
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn! Next player!")
+        pigSound.play();
         if ((playerArray.length - 1) === currentPlayerIndex) {
           currentPlayerIndex = 0;
         } else {

@@ -34,7 +34,11 @@ body {
 
 .container {
   background-color: yellow;
-  opacity: 0.85;
+  opacity: 0.95;
   border: 1px solid pink;
   border-radius: 15px;
+}
+
+.score-current {
+  font-style: italic;
 }
