@@ -25,7 +25,7 @@ $(document).ready(function(){
 
     $("button#button-play").click(function () {
       newPlayer.rollDie();
-      console.log(newPlayer.turnScore);
+      $("#score-total").text(newPlayer.playerName + " : " + newPlayer.turnScore);
     });
   })
 
