@@ -6,6 +6,7 @@ function Player(name) {
 }
 
 Player.prototype.rollDie = function() {
+  debugger;
   var rollResult = Math.floor(Math.random() * (6-1 + 1)) + 1;
   if (rollResult === 1) {
     this.turnScore = 0;
@@ -29,12 +30,19 @@ $(document).ready(function(){
   $("#player-form").submit(function(event) {
     event.preventDefault();
 
-    var nameInput = $("#player-one").val();
-    console.log(nameInput);
-    var newPlayer = new Player(nameInput);
+    // var nameInput = $("#player-one").val();
+    // var newPlayer = new Player(nameInput);
+    var playerArray = [];
+    $("input").each(function() {
+      var newPlayer = new Player($(this).val());
+      playerArray.push(newPlayer);
+    })
+    console.log(playerArray);
+
+    var currentPlayerIndex = 0;
 
     $("button#button-play").click(function () {
-      var notOne = newPlayer.rollDie();
+      var notOne = playerArray[currentPlayerIndex].rollDie();
       if (notOne === "WINNER!") {
         $("#score-total").text(newPlayer.playerName + "WINS! Your Score is " + newPlayer.totalScore);
       } else if (notOne) {
