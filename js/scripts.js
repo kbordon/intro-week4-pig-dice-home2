@@ -9,9 +9,14 @@ Player.prototype.rollDie = function() {
   var rollResult = Math.floor(Math.random() * (6-1 + 1)) + 1;
   if (rollResult === 1) {
     this.turnScore = 0;
-    console.log("You lose! Your points for this turn are " + this.turnScore);
   } else {
     this.turnScore = this.turnScore + rollResult;
+    if (this.totalScore + this.turnScore >= 100) {
+      this.totalScore = this.totalScore + this.turnScore;
+      return "WINNER!";
+    }
+    return true;
+
   }
 }
 
@@ -29,8 +34,16 @@ $(document).ready(function(){
     var newPlayer = new Player(nameInput);
 
     $("button#button-play").click(function () {
-      newPlayer.rollDie();
-      $("#score-total").text(newPlayer.playerName + " : " + newPlayer.turnScore);
+      var notOne = newPlayer.rollDie();
+      if (notOne === "WINNER!") {
+        $("#score-total").text(newPlayer.playerName + "WINS! Your Score is " + newPlayer.totalScore);
+      } else if (notOne) {
+        $("#score-total").text(newPlayer.playerName + " : " + newPlayer.turnScore);
+        $("button#button-hold").show();
+      } else {
+        $("#score-total").text("You rolled a 1 and lost your turn! Next player!")
+      }
+
     });
 
     $("button#button-hold").click(function () {
