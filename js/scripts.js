@@ -22,6 +22,7 @@ Player.prototype.rollDie = function() {
 
 Player.prototype.holdDie = function() {
   this.totalScore = this.totalScore + this.turnScore;
+  this.turnScore = 0;
 }
 
 // front-end
@@ -44,12 +45,12 @@ $(document).ready(function(){
       var notOne = playerArray[currentPlayerIndex].rollDie();
       // $("#score-total").text(playerArray[currentPlayerIndex].playerName + " text ");
       if (notOne === "WINNER!") {
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + "WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore);
+        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore);
       } else if (notOne) {
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " : " + playerArray[currentPlayerIndex].turnScore);
+        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " : " + playerArray[currentPlayerIndex].turnScore + " (Total: " + playerArray[currentPlayerIndex].totalScore + " )");
         $("button#button-hold").show();
       } else {
-        $("#score-total").text( playerArray[currentPlayerIndex].playerName + " rolled a 1 and lost your turn! Next player!")
+        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn! Next player!")
         if ((playerArray.length - 1) === currentPlayerIndex) {
           currentPlayerIndex = 0;
         } else {
@@ -60,8 +61,13 @@ $(document).ready(function(){
     });
 
     $("button#button-hold").click(function () {
-      newPlayer.holdDie();
-      $("#score-total").text(newPlayer.playerName + " total score: " + newPlayer.totalScore);
+      playerArray[currentPlayerIndex].holdDie();
+      $("#score-total").text(playerArray[currentPlayerIndex].playerName + " total score: " + playerArray[currentPlayerIndex].totalScore);
+      if ((playerArray.length - 1) === currentPlayerIndex) {
+        currentPlayerIndex = 0;
+      } else {
+        currentPlayerIndex++;
+      }
     })
   })
 
