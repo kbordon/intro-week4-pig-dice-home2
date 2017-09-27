@@ -1,7 +1,19 @@
 #score-total {
+  font-size: 30px;
+}
+
+#button-hold, #button-play {
+  display : none;
+}
+
+#score-keeper {
   font-size: 50px;
 }
 
-#button-hold {
-  display : none;
+.form-control {
+  width: 500px;
+}
+
+.jumbotron {
+  background-color: pink;
 }

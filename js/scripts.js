@@ -32,6 +32,8 @@ $(document).ready(function(){
 
     // var nameInput = $("#player-one").val();
     // var newPlayer = new Player(nameInput);
+    $("#create-player").hide();
+    $("#button-play").show();
     var playerArray = [];
     $("input").each(function() {
       var newPlayer = new Player($(this).val());
