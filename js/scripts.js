@@ -5,19 +5,48 @@ function Player(name) {
   this.turnScore = 0;
 }
 
-Player.prototype.rollDie = function() {
-  var rollResult = Math.floor(Math.random() * (6-1 + 1)) + 1;
-  if (rollResult === 1) {
+// Player.prototype.rollDie = function() {
+//   var rollResult = Math.floor(Math.random() * (6-1 + 1)) + 1;
+//   if (rollResult === 1) {
+//     this.turnScore = 0;
+//   } else {
+//     this.turnScore = this.turnScore + rollResult;
+//     if (this.totalScore + this.turnScore >= 100) {
+//       this.totalScore = this.totalScore + this.turnScore;
+//       return "win";
+//     }
+//     return rollResult;
+//
+//   }
+// }
+
+Player.prototype.rollTwoDice = function() {
+  var rollArray = [];
+  for (var diceNumber = 0; diceNumber < 2; diceNumber++) {
+    rollArray.push(Math.floor(Math.random() * (6-1 + 1)) + 1);
+  }
+  // var rollResult = Math.floor(Math.random() * (6-1 + 1)) + 1;
+  // var rollResult2 = Math.floor(Math.random() * (6-1 + 1)) + 1;
+  if (rollArray[0] === 1 && rollArray[1] === 1) {
+    this.turnScore = 0;
+    this.totalScore = 0;
+  } else if (rollArray[0] === 1 || rollArray[1] === 1) {
     this.turnScore = 0;
   } else {
-    this.turnScore = this.turnScore + rollResult;
-    if (this.totalScore + this.turnScore >= 100) {
-      this.totalScore = this.totalScore + this.turnScore;
-      return "win";
-    }
-    return rollResult;
-
+    this.turnScore += (rollResult + rollResult2);
+    return rollArray;
   }
+  // if (rollResult === 1) {
+  //   this.turnScore = 0;
+  // } else {
+  //   this.turnScore = this.turnScore + rollResult;
+  //   if (this.totalScore + this.turnScore >= 100) {
+  //     this.totalScore = this.totalScore + this.turnScore;
+  //     return "win";
+  //   }
+  //   return rollResult;
+  //
+  // }
 }
 
 Player.prototype.holdDie = function() {
@@ -61,27 +90,28 @@ $(document).ready(function(){
     $("button#button-play").click(function () {
       $(".player-" + currentPlayerIndex).addClass("score-current");
       $("#button-hold").removeAttr("disabled");
-      var dieResult = playerArray[currentPlayerIndex].rollDie();
-      // $("#score-total").text(playerArray[currentPlayerIndex].playerName + " text ");
-      if (dieResult === "win") {
-        $("#button-play, #button-hold").attr("disabled", "disabled");
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore + "!");
-      } else if (dieResult) {
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a " + dieResult  + ". Turn Score: " + playerArray[currentPlayerIndex].turnScore);
-        // $("button#button-hold").show();
-      } else {
-        $("#button-hold").attr("disabled", "disabled");
-        $(".player-" + currentPlayerIndex).removeClass("score-current");
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn!")
-        pigSound.play();
-        if ((playerArray.length - 1) === currentPlayerIndex) {
-          currentPlayerIndex = 0;
-        } else {
-          currentPlayerIndex++;
-        }
-        $(".player-" + currentPlayerIndex).addClass("score-current");
-        $("#score-total").append(" It's <strong>" + playerArray[currentPlayerIndex].playerName + "'s</strong> turn.");
-      }
+      var dieResult = playerArray[currentPlayerIndex].rollTwoDice();
+
+          // $("#score-total").text(playerArray[currentPlayerIndex].playerName + " text ");
+      // if (dieResult === "win") {
+      //   $("#button-play, #button-hold").attr("disabled", "disabled");
+      //   $("#score-total").text(playerArray[currentPlayerIndex].playerName + " WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore + "!");
+      // } else if (dieResult) {
+      //   $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a " + dieResult  + ". Turn Score: " + playerArray[currentPlayerIndex].turnScore);
+      //   // $("button#button-hold").show();
+      // } else {
+      //   $("#button-hold").attr("disabled", "disabled");
+      //   $(".player-" + currentPlayerIndex).removeClass("score-current");
+      //   $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn!")
+      //   pigSound.play();
+      //   if ((playerArray.length - 1) === currentPlayerIndex) {
+      //     currentPlayerIndex = 0;
+      //   } else {
+      //     currentPlayerIndex++;
+      //   }
+      //   $(".player-" + currentPlayerIndex).addClass("score-current");
+      //   $("#score-total").append(" It's <strong>" + playerArray[currentPlayerIndex].playerName + "'s</strong> turn.");
+      // }
 
     });
 
