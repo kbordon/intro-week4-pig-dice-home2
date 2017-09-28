@@ -34,7 +34,7 @@ $(document).ready(function(){
     // var newPlayer = new Player(nameInput);
     var pigSound = new Audio('quiet_pig.mp3');
     $("#create-players").hide();
-    $("#button-play").show();
+    $("#button-play, .game-box").show();
 
     var playerArray = [];
     $("input").each(function() {
@@ -85,6 +85,7 @@ $(document).ready(function(){
 
     $("button#button-hold").click(function () {
       playerArray[currentPlayerIndex].holdDie();
+      $("#button-hold").hide();
       $(".player-" + currentPlayerIndex).removeClass("score-current");
       $("#score-total").text(playerArray[currentPlayerIndex].playerName + " held.");
       $(".total-" + currentPlayerIndex).text(playerArray[currentPlayerIndex].totalScore);
@@ -96,6 +97,11 @@ $(document).ready(function(){
       $(".player-" + currentPlayerIndex).addClass("score-current");
       $("#score-total").append(" It's " + playerArray[currentPlayerIndex].playerName + "'s turn.");
     })
+
+    $("button#button-reset").click(function() {
+      window.location.reload();
+    });
+
   })
 
 

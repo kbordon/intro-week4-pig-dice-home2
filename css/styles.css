@@ -1,14 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Wendy+One');
+
+
 #score-total {
-  font-size: 30px;
+  font-size: 25px;
 }
 
-#button-hold, #button-play {
+.game-box {
   display : none;
 }
 
 #score-keeper {
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
+  background-color: pink;
+  border: 1px solid #ff9999
+;
+  border-radius: 5px;
 }
 
 .form-control {
@@ -17,16 +24,28 @@
 
 .jumbotron {
   background-color: pink;
-  background-image: url("../img/dice.jpeg");
-  height: 370px;
-  width: 912px;
+  background-image: url("../img/pigcute.jpg");
+  opacity: .90;
   text-align: center;
   border: 1px solid pink;
+  font-family: 'Wendy One', sans-serif;
+  letter-spacing: .9em;
+}
+
+.jumbotron h1 {
+  font-size: 100px;
+  color: white;
+  text-shadow: 3px 3px 3px #ff3333;
+}
+
+.jumbotron h3 {
+  text-shadow: 2px 2px 1px white;
 }
 
 body {
-  background-color: pink;
-  background-image: url("../img/pigss.png");
+  background-color: #fffae6;
+  /*background-color: pink;*/
+  /*background-image: url("../img/pigcute.jpg");*/
   /*background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
@@ -41,11 +60,18 @@ body {
 }
 
 .score-current {
-  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
-  background-color: white;
-  border: 1px solid black;
+  text-shadow: 0 0 3px white, 0 0 5px yellow;
+  font-weight: bold;
 }
 
 .well-score {
   width: contain;
 }
+
+.well-form {
+  width: 550px;
+}
+
+/*.col {
+  min-height: 200px;
+}*/

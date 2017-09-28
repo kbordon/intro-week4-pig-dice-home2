@@ -13,40 +13,53 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h1>Pig Dice!</h1>
+        <h1>Do I Feel Lucky?</h1>
+        <h3><em>Well, do you?</em></h3>
       </div>
-      <div id="create-players">
-        <div class="well">
-          <form id="player-form">
-            <div class="form-group">
-              <label for="player-one">Enter name for player one:</label>
-              <input id="player-one" type="text" class="form-control" required>
+        <div id="create-players">
+          <div class="well well-form">
+            <form id="player-form">
+              <div class="form-group">
+                <label for="player-one">Enter name for player one:</label>
+                <input id="player-one" type="text" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="player-two">Enter name for player two:</label>
+                <input id="player-two" type="text" class="form-control" required>
+              </div>
+                <button type="submit" class="btn btn-info">Submit</button>
+              </form>
             </div>
-            <div class="form-group">
-              <label for="player-two">Enter name for player two:</label>
-              <input id="player-two" type="text" class="form-control" required>
-            </div>
-              <button type="submit" class="btn btn-info">Submit</button>
-            </form>
-          </div>
-      </div>
+        </div>
 
       <br>
-      <div id="game-box">
+      <div>
         <div class="row">
-          <div class="col-md-6">
-            <button type="button" id="button-play" class="btn btn-success">PLAY</button>
-            <button type="button" id="button-hold" class="btn btn-warning">HOLD</button>
-            <button type="button" id="button-reset" class="btn btn-primary">RESET</button>
-            <div id="score-total">
+          <div class="col-md-1 game-box">
+            <button type="button" id="button-play" class="btn btn-success btn-block">PLAY</button>
+            <br>
+            <br>
+            <button type="button" id="button-hold" class="btn btn-warning btn-block">HOLD</button>
+            <!-- <ul class="list-unstyled">
+              <li><button type="button" id="button-play" class="btn btn-success btn-block">PLAY</button></li>
+              <li><button type="button" id="button-hold" class="btn btn-warning">HOLD</button></li>
+            </ul> -->
+          </div>
+          <div class="col-md-8 game-box">
+            <div class="well">
+              <div id="score-total">
+                <p>Begin by pressing "PLAY."</p>
+              </div>
             </div>
           </div>
-
-          <div class="col-md-6">
-            <div class="well well-score">
+          <div class="col-md-2 game-box">
               <ul class="list-inline" id="score-keeper">
               </ul>
-            </div>
+          </div>
+          <div class="col-md-1 game-box">
+            <ul class="list-unstyled">
+              <li><button type="reset" id="button-reset" class="btn btn-primary">RESET</button></li>
+            </ul>
           </div>
         </div>
       </div>
