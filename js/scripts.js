@@ -34,7 +34,8 @@ $(document).ready(function(){
     // var newPlayer = new Player(nameInput);
     var pigSound = new Audio('quiet_pig.mp3');
     $("#create-players").hide();
-    $("#button-play, .game-box").show();
+    $(".game-box").show();
+    $("button#button-hold").attr("disabled", "disabled");
 
     var playerArray = [];
     $("input").each(function() {
@@ -59,16 +60,17 @@ $(document).ready(function(){
 
     $("button#button-play").click(function () {
       $(".player-" + currentPlayerIndex).addClass("score-current");
+      $("#button-hold").removeAttr("disabled");
       var dieResult = playerArray[currentPlayerIndex].rollDie();
       // $("#score-total").text(playerArray[currentPlayerIndex].playerName + " text ");
       if (dieResult === "win") {
-        $("#button-play, #button-hold").hide();
+        $("#button-play, #button-hold").attr("disabled", "disabled");
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore + "!");
       } else if (dieResult) {
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a " + dieResult  + ". Turn Score: " + playerArray[currentPlayerIndex].turnScore);
-        $("button#button-hold").show();
+        // $("button#button-hold").show();
       } else {
-        $("#button-hold").hide();
+        $("#button-hold").attr("disabled", "disabled");
         $(".player-" + currentPlayerIndex).removeClass("score-current");
         $("#score-total").text(playerArray[currentPlayerIndex].playerName + " rolled a 1, and lost their turn!")
         pigSound.play();
@@ -78,14 +80,14 @@ $(document).ready(function(){
           currentPlayerIndex++;
         }
         $(".player-" + currentPlayerIndex).addClass("score-current");
-        $("#score-total").append(" It's " + playerArray[currentPlayerIndex].playerName + "'s turn.");
+        $("#score-total").append(" It's <strong>" + playerArray[currentPlayerIndex].playerName + "'s</strong> turn.");
       }
 
     });
 
     $("button#button-hold").click(function () {
       playerArray[currentPlayerIndex].holdDie();
-      $("#button-hold").hide();
+      $("#button-hold").attr("disabled", "disabled");
       $(".player-" + currentPlayerIndex).removeClass("score-current");
       $("#score-total").text(playerArray[currentPlayerIndex].playerName + " held.");
       $(".total-" + currentPlayerIndex).text(playerArray[currentPlayerIndex].totalScore);
