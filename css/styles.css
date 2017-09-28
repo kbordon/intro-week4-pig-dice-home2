@@ -7,7 +7,8 @@
 }
 
 #score-keeper {
-  font-size: 50px;
+  font-size: 40px;
+  text-align: center;
 }
 
 .form-control {
@@ -33,12 +34,18 @@ body {
 }
 
 .container {
-  background-color: yellow;
+  /*background-color: yellow;
   opacity: 0.95;
   border: 1px solid pink;
-  border-radius: 15px;
+  border-radius: 15px;*/
 }
 
 .score-current {
-  font-style: italic;
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.well-score {
+  width: contain;
 }
