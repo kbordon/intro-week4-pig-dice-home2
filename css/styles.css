@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Wendy+One');
 
 
+#button-play {
+  background-color: pink;
+  border-color: #ff9999;
+}
+
+#button-reset {
+  background-color: #ff4d4d;
+  border-color: red;
+
+}
+
 #score-total {
   font-size: 25px;
 }
@@ -64,9 +75,9 @@ body {
   font-weight: bold;
 }
 
-.well-score {
+/*.well-score {
   width: contain;
-}
+}*/
 
 .well-form {
   width: 550px;
