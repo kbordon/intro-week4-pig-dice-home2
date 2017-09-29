@@ -27,7 +27,7 @@ Player.prototype.rollDice = function(number) {
     if (diceRolls[1]) {
       this.turnScore += diceRolls[1];
     }
-    if (this.totalScore + this.turnScore >= 100) {
+    if (this.totalScore + this.turnScore >= 50) {
       this.totalScore = this.totalScore + this.turnScore;
       return "A";
     }
@@ -74,7 +74,8 @@ $(document).ready(function(){
 
       if (dieResult[0] === "A") {
         $("#button-play, #button-hold").attr("disabled", "disabled");
-        $("#score-total").text(playerArray[currentPlayerIndex].playerName + " WINS! Your Score is " + playerArray[currentPlayerIndex].totalScore + "!");
+        $("#score-total").empty();
+        $("#score-total").append("<img src='img/win.gif'><br><strong>" + playerArray[currentPlayerIndex].playerName + " WINS!</strong> Your Score is <strong>" + playerArray[currentPlayerIndex].totalScore + "</strong>!");
         $(".total-" + currentPlayerIndex).text(playerArray[currentPlayerIndex].totalScore);
       } else if (dieResult[0] === "Z") {
         snakeEyes.play();
